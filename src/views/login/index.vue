@@ -1,8 +1,8 @@
 <template>
   <div class="index">
     <div class="window">
-      <div :style="{ opacity: opacityList[0] }" class="title">ApiKid</div>
-      <div :style="{ opacity: opacityList[1] }" class="login-window">
+      <div class="title">ApiKid</div>
+      <div class="login-window">
         <LoginWindow />
       </div>
     </div>
@@ -12,16 +12,6 @@
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
 import LoginWindow from '@/components/login/LoginWindow.vue'
-const opacityList = ref([0, 0])
-
-onMounted(() => {
-  setTimeout(() => {
-    opacityList.value = [1, 0]
-    setTimeout(() => {
-      opacityList.value = [1, 1]
-    }, 500)
-  }, 100)
-})
 </script>
 
 <style scoped lang="scss">
@@ -29,6 +19,7 @@ onMounted(() => {
   width: 100%;
   height: 100vh;
   background: linear-gradient(180deg, #7c7c7c 0%, rgba(245, 245, 245, 0) 100%);
+
   .window {
     position: absolute;
     left: 65%;
