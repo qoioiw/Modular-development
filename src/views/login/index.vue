@@ -1,8 +1,8 @@
 <template>
   <div class="index">
     <div class="window">
-      <div class="title">ApiKid</div>
-      <div class="login-window">
+      <div :style="{ opacity: opacityList[0] }" class="title">ApiKid</div>
+      <div :style="{ opacity: opacityList[1] }" class="login-window">
         <LoginWindow />
       </div>
     </div>
@@ -11,15 +11,28 @@
 
 <script setup lang="ts">
 import { ref, onMounted } from 'vue'
-import LoginWindow from '@/components/login/LoginWindow.vue'
+import LoginWindow from './compontants/LoginWindow/index.vue'
+const opacityList = ref([0, 0])
+
+onMounted(() => {
+  setTimeout(() => {
+    opacityList.value = [1, 0]
+    setTimeout(() => {
+      opacityList.value = [1, 1]
+    }, 500)
+  }, 100)
+})
 </script>
 
 <style scoped lang="scss">
 .index {
   width: 100%;
   height: 100vh;
-  background: linear-gradient(180deg, #7c7c7c 0%, rgba(245, 245, 245, 0) 100%);
-
+  background: url($backound); /* 使用背景图片 */
+  background-size: cover;
+  background-repeat: no-repeat;
+  background-attachment: fixed;
+  position: relative; /* 让伪元素相对于这个容器定位 */
   .window {
     position: absolute;
     left: 65%;
@@ -49,12 +62,17 @@ import LoginWindow from '@/components/login/LoginWindow.vue'
     }
 
     .login-window {
-      background: linear-gradient(
-        180deg,
-        #7c7c7c 0%,
-        rgba(245, 245, 245, 0) 100%
-      );
+      background: $background-color;
     }
   }
 }
+// .index::before {
+//   width: 100%;
+//   height: 100vh;
+//   background: url($backound); /* 使用背景图片 */
+//   background-size: cover;
+//   background-repeat: no-repeat;
+//   background-attachment: fixed;
+//   position: relative; /* 让伪元素相对于这个容器定位 */
+// }
 </style>

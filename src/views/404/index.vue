@@ -1,9 +1,7 @@
 <template>
-  <div>
-    <h1>404</h1>
-  </div>
+  <div>404</div>
 </template>
 
-<script setup lang="ts"></script>
+<script></script>
 
-<style scoped></style>
+<style></style>
